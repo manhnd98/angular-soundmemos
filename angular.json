@@ -192,6 +192,48 @@
       },
       "tags": [],
       "implicitDependencies": ["soundmemos"]
+    },
+    "web-record": {
+      "projectType": "library",
+      "root": "libs/web/record",
+      "sourceRoot": "libs/web/record/src",
+      "prefix": "soundmemos",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "outputs": ["dist/libs/web/record"],
+          "options": {
+            "project": "libs/web/record/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/web/record/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/web/record/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/web/record"],
+          "options": {
+            "jestConfig": "libs/web/record/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/web/record/src/**/*.ts",
+              "libs/web/record/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
     }
   }
 }

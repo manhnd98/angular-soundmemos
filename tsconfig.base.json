@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@soundmemos/api-interfaces": ["libs/api-interfaces/src/index.ts"]
+      "@soundmemos/api-interfaces": ["libs/api-interfaces/src/index.ts"],
+      "@soundmemos/record": ["libs/web/record/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

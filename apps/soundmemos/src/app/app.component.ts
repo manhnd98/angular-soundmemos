@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Message } from '@soundmemos/api-interfaces';
+import { PermissionsService } from '@ng-web-apis/permissions';
 
 @Component({
   selector: 'soundmemos-root',
@@ -8,6 +9,12 @@ import { Message } from '@soundmemos/api-interfaces';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  hello$ = this.http.get<Message>('/api/hello');
-  constructor(private http: HttpClient) {}
+  constructor(
+    @Inject(PermissionsService) private permissionService: PermissionsService
+  ) {
+    const geolocationStatus$ = this.permissionService.state('geolocation');
+    geolocationStatus$.subscribe((geolocationStatus) =>
+      console.log(geolocationStatus)
+    );
+  }
 }
