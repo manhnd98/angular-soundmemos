@@ -10,7 +10,7 @@ interface DetectBrowser {
  * @returns {result.version}: current version number
  * @returns {result.minVersion}: minimum version
  */
-export function detectBrowser() {
+export function detectBrowser(): DetectBrowser {
   const result: DetectBrowser = {
     browser: null,
     version: null,
@@ -21,4 +21,6 @@ export function detectBrowser() {
     result.browser = 'Not a supported browser.';
     return result;
   }
+
+  return result;
 }
