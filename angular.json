@@ -234,6 +234,58 @@
         }
       },
       "tags": []
+    },
+    "web-settings": {
+      "projectType": "library",
+      "root": "libs/web/settings",
+      "sourceRoot": "libs/web/settings/src",
+      "prefix": "soundmemos",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/web/settings"],
+          "options": {
+            "jestConfig": "libs/web/settings/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/web/settings/src/**/*.ts",
+              "libs/web/settings/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
+    "web-utils": {
+      "projectType": "library",
+      "root": "libs/web/utils",
+      "sourceRoot": "libs/web/utils/src",
+      "prefix": "soundmemos",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/web/utils"],
+          "options": {
+            "jestConfig": "libs/web/utils/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/web/utils/src/**/*.ts",
+              "libs/web/utils/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
     }
   }
 }
