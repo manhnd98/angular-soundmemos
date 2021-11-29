@@ -1,6 +1,4 @@
 import { Component, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Message } from '@soundmemos/api-interfaces';
 import { PermissionsService } from '@ng-web-apis/permissions';
 
 @Component({
