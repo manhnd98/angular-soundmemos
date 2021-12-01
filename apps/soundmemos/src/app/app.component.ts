@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { PermissionsService } from '@ng-web-apis/permissions';
+import { WebRecordService } from '@soundmemos/record';
 
 @Component({
   selector: 'soundmemos-root',
@@ -8,7 +9,8 @@ import { PermissionsService } from '@ng-web-apis/permissions';
 })
 export class AppComponent {
   constructor(
-    @Inject(PermissionsService) private permissionService: PermissionsService
+    @Inject(PermissionsService) private permissionService: PermissionsService,
+    @Inject(WebRecordService) private webRecordService: WebRecordService
   ) {
     const geolocationStatus$ = this.permissionService.state('geolocation');
     geolocationStatus$.subscribe((geolocationStatus) =>

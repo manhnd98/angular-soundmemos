@@ -1,3 +1,4 @@
+import { WebRecordService } from './record.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StoreModule } from '@ngrx/store';
@@ -11,5 +12,6 @@ import { RecordEffects } from './state/record.effects';
     StoreModule.forFeature(fromRecord.RECORD_FEATURE_KEY, fromRecord.reducer),
     EffectsModule.forFeature([RecordEffects]),
   ],
+  providers: [WebRecordService],
 })
 export class WebRecordModule {}

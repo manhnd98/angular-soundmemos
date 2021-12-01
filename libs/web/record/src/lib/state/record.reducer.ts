@@ -25,15 +25,15 @@ export const initialState: State = recordAdapter.getInitialState({
 });
 
 const recordReducer = createReducer(
-  initialState,
-  on(RecordActions.init, (state) => ({ ...state, loaded: false, error: null })),
-  on(RecordActions.loadRecordSuccess, (state, { record }) =>
-    recordAdapter.setAll(record, { ...state, loaded: true })
-  ),
-  on(RecordActions.loadRecordFailure, (state, { error }) => ({
-    ...state,
-    error,
-  }))
+  initialState
+  // on(RecordActions.init, (state) => ({ ...state, loaded: false, error: null })),
+  // on(RecordActions.loadRecordSuccess, (state, { record }) =>
+  //   recordAdapter.setAll(record, { ...state, loaded: true })
+  // ),
+  // on(RecordActions.loadRecordFailure, (state, { error }) => ({
+  //   ...state,
+  //   error,
+  // }))
 );
 
 export function reducer(state: State | undefined, action: Action) {
