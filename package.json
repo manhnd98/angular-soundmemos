@@ -38,6 +38,8 @@
     "@taiga-ui/kit": "^2.24.0",
     "@tinkoff/ng-dompurify": "3.0.0",
     "dompurify": "2.2.9",
+    "immer": "^9.0.7",
+    "ngrx-immer": "^2.0.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "~7.4.0",
     "tslib": "^2.0.0",

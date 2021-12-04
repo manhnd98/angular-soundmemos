@@ -18,7 +18,8 @@
       "@soundmemos/api-interfaces": ["libs/api-interfaces/src/index.ts"],
       "@soundmemos/record": ["libs/web/record/src/index.ts"],
       "@soundmemos/settings": ["libs/web/settings/src/index.ts"],
-      "@soundmemos/utils": ["libs/web/utils/src/index.ts"]
+      "@soundmemos/utils": ["libs/web/utils/src/index.ts"],
+      "@env/*": ["apps/soundmemos/src/environments/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]

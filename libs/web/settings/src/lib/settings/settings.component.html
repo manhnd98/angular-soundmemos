@@ -1,0 +1,175 @@
+<h2>Settings</h2>
+<form
+  class="b-form"
+  [formGroup]="settingForm"
+  *ngIf="settingsState$ | async as settingInfo"
+>
+  <div class="tui-row tui-row_sme">
+    <div class="tui-col_8">
+      <div class="tui-form__row">
+        <label tuiLabel label="Config Class">
+          <tui-select
+            tuiTextfieldSize="s"
+            formControlName="configClass"
+            [valueContent]="deviceClassContent"
+            [tuiTextfieldLabelOutside]="true"
+          >
+            Choose a device class
+            <tui-data-list-wrapper
+              *tuiDataList
+              [items]="settingInfo.configClass"
+            ></tui-data-list-wrapper>
+          </tui-select>
+          <ng-template #deviceClassContent let-data>
+            <div class="uppercase-name">
+              {{ data }}
+            </div>
+          </ng-template>
+        </label>
+      </div>
+      <div class="tui-form__row">
+        <label tuiLabel label="Video Input">
+          <tui-select
+            tuiTextfieldSize="s"
+            formControlName="videoInput"
+            [valueContent]="devicesContent"
+            [tuiTextfieldLabelOutside]="true"
+          >
+            Choose a input device
+            <tui-data-list-wrapper
+              *tuiDataList
+              [items]="settingInfo.videoInputDevices"
+              [itemContent]="devicesContent"
+            ></tui-data-list-wrapper>
+          </tui-select>
+        </label>
+      </div>
+      <div class="tui-form__row">
+        <label tuiLabel label="Audio Input">
+          <tui-select
+            tuiTextfieldSize="s"
+            formControlName="audioInput"
+            [valueContent]="devicesContent"
+            [tuiTextfieldLabelOutside]="true"
+          >
+            Choose a input device
+            <tui-data-list-wrapper
+              *tuiDataList
+              [items]="settingInfo.audioInputDevices"
+              [itemContent]="devicesContent"
+            ></tui-data-list-wrapper>
+          </tui-select>
+        </label>
+      </div>
+      <div class="tui-form__row">
+        <label tuiLabel label="Audio Output">
+          <tui-select
+            tuiTextfieldSize="s"
+            formControlName="audioOutput"
+            [valueContent]="devicesContent"
+            [tuiTextfieldLabelOutside]="true"
+          >
+            Choose a output device
+            <tui-data-list-wrapper
+              *tuiDataList
+              [items]="settingInfo.audioOutputDevices"
+              [itemContent]="devicesContent"
+            ></tui-data-list-wrapper>
+          </tui-select>
+        </label>
+      </div>
+      <div class="tui-form__row">
+        <label tuiLabel label="I/O Buffer Size">
+          <tui-select
+            tuiTextfieldSize="s"
+            formControlName="ioBufferSize"
+            [valueContent]="ioBufferSizesContent"
+            [tuiTextfieldLabelOutside]="true"
+          >
+            <tui-data-list-wrapper
+              *tuiDataList
+              [items]="settingInfo.ioBufferSizes"
+            ></tui-data-list-wrapper>
+          </tui-select>
+          <ng-template #ioBufferSizesContent let-data>
+            <div class="uppercase-name">
+              {{ data }}
+            </div>
+          </ng-template>
+        </label>
+      </div>
+      <div class="tui-form__row">
+        <label tuiLabel label="Sample Rate">
+          <tui-select
+            tuiTextfieldSize="s"
+            formControlName="sampleRate"
+            [valueContent]="sampleRatesContent"
+            [tuiTextfieldLabelOutside]="true"
+          >
+            <tui-data-list-wrapper
+              *tuiDataList
+              [items]="settingInfo.sampleRates"
+            ></tui-data-list-wrapper>
+          </tui-select>
+        </label>
+        <ng-template #sampleRatesContent let-data>
+          <div class="uppercase-name">{{ data }} Hz</div>
+        </ng-template>
+      </div>
+      <div class="tui-form__row">
+        <label tuiLabel label="Output Type">
+          <tui-select
+            tuiTextfieldSize="s"
+            formControlName="outputType"
+            [valueContent]="outpuTypesContent"
+            [tuiTextfieldLabelOutside]="true"
+          >
+            <tui-data-list-wrapper
+              *tuiDataList
+              [items]="settingInfo.outputTypes"
+            ></tui-data-list-wrapper>
+          </tui-select>
+          <ng-template #outpuTypesContent let-data>
+            <div class="uppercase-name">.{{ data }}</div>
+          </ng-template>
+        </label>
+      </div>
+      <div class="tui-form__buttons">
+        <span class="warning" *ngIf="settingForm.invalid">
+          SoundMemos will not work if your config error!!
+        </span>
+        <button
+          tuiButton
+          size="s"
+          type="submit"
+          class="tui-form__button"
+          (click)="saveConfig()"
+        >
+          Save
+        </button>
+        <button
+          tuiButton
+          type="button"
+          appearance="flat"
+          size="s"
+          class="tui-form__button"
+          (click)="cancelSetting()"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+<ng-template #devicesContent let-data>
+  <tui-marker-icon
+    *ngIf="data.notExist"
+    mode="error"
+    size="m"
+    src="tuiIconAttention"
+    class="tui-space_right-2 warning_icon"
+  ></tui-marker-icon>
+  <div class="uppercase-name">
+    {{ data.label }}
+  </div>
+</ng-template>

@@ -1,0 +1,36 @@
+:host {
+    display: block;
+}
+.tui-row > div {
+    width: 100%;
+}
+
+label[tuilabel]{
+    flex-direction: row;
+    align-items: center;
+}
+
+
+::ng-deep label[tuilabel] .content {
+    width: 100%;
+ } 
+
+::ng-deep label[tuilabel] .label {
+    width: 30%;
+}
+
+.warning_icon[data-tui-host-size='m'] {
+    width: 2rem !important;
+    height: 2rem !important;
+    background-color: transparent;
+}
+
+.tui-form__buttons{
+    float: right;
+}
+
+.warning{
+    display: flex;
+    align-items: center;
+    color: red;
+}
