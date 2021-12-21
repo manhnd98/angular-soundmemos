@@ -1,8 +1,36 @@
-<div style="text-align: center">
-  <h1>Welcome to soundmemos!</h1>
-  <img
-    width="450"
-    src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png"
-    alt="Nx - Smart, Extensible Build Framework"
-  />
+<!-- <div style="margin-top: 300px;">
+  <canvas waCanvas2d [height]="200" [width]="10000">
+    <canvas-path *ngFor="let item of listBufferChannel1; index as i" fillStyle="#44bc75">
+      <canvas-rect [x]="(i * 2) + 20" [y]="200 - (item * 200)" [width]="2" [height]="(item * 200)"></canvas-rect>
+    </canvas-path>
+    <canvas-path></canvas-path>
+  </canvas>
+</div> -->
+
+<!-- <div style="margin-top: 300px;">
+  <canvas waCanvas2d [height]="200" [width]="10000">
+    <canvas-path fillStyle="#44bc75">
+      <canvas-rect [x]="0" [y]="200 - (0.8 * 200)" [width]="10" [height]="(0.8 * 200)"></canvas-rect>
+      <canvas-rect [x]="20" [y]="200 - (0.8 * 200)" [width]="10" [height]="(0.8 * 200)"></canvas-rect>
+      <canvas-rect [x]="40" [y]="200 - (0.8 * 200)" [width]="10" [height]="(0.8 * 200)"></canvas-rect>
+      <canvas-rect [x]="60" [y]="200 - (0.8 * 200)" [width]="10" [height]="(0.8 * 200)"></canvas-rect>
+      <canvas-rect [x]="80" [y]="200 - (0.8 * 200)" [width]="10" [height]="(0.8 * 200)"></canvas-rect>
+    </canvas-path>
+
+
+    <canvas-path></canvas-path>
+  </canvas>
+</div> -->
+
+<button (click)="onStartRecord()">Click to start record</button>
+
+<button (click)="onStopRecord()">Click to stop record</button>
+
+<div style="margin-top: 20px">
+  <soundmemos-visualize
+    [height]="1000"
+    [defaultWidth]="2000"
+    [soundData]="listBufferChannel0.slice(-20)"
+  >
+  </soundmemos-visualize>
 </div>

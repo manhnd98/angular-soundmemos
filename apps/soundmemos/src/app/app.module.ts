@@ -1,4 +1,3 @@
-import { WebRecordModule } from '@soundmemos/record';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -8,7 +7,8 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
-
+import { CanvasModule } from '@ng-web-apis/canvas';
+import { VisualizeModule, WebRecordService } from '@soundmemos/record';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -26,9 +26,10 @@ import { environment } from '../environments/environment';
     ),
     EffectsModule.forRoot([]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    WebRecordModule,
+    CanvasModule,
+    VisualizeModule,
   ],
-  providers: [],
+  providers: [WebRecordService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
