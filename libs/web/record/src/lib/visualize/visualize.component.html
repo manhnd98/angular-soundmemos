@@ -1,14 +1,6 @@
-<canvas waCanvas2d [height]="height">
-  <canvas-path
-    *ngFor="let item of soundData; index as i"
-    [fillStyle]="fillColor"
-  >
-    <canvas-rect
-      [x]="i * 5 * 1.5"
-      [y]="height - item * height"
-      [width]="5"
-      [height]="item * height"
-    >
-    </canvas-rect>
-  </canvas-path>
-</canvas>
+<canvas
+  #canvasElement
+  [height]="height"
+  [width]="width"
+  [style.background]="backgroundColor"
+></canvas>

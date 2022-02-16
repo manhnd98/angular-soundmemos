@@ -1,57 +1,90 @@
 import {
+  AfterViewInit,
+  Attribute,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   ElementRef,
   Inject,
   Input,
+  OnInit,
   ViewChild,
 } from '@angular/core';
-import { Canvas2dDirective } from '@ng-web-apis/canvas';
+import { WINDOW } from '@ng-web-apis/common';
 import { tuiDefaultProp } from '@taiga-ui/cdk';
+import { MIN_HEIGHT_NODE } from '../tokens/min-height-node';
+import { NODE_SPACE } from '../tokens/node-space';
+import { NODE_WIDTH } from '../tokens/node-width';
+import { SoundNode } from './sound-node';
 @Component({
   selector: 'soundmemos-visualize',
   templateUrl: './visualize.component.html',
   styleUrls: ['./visualize.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class VisualizeComponent {
-  private _soundData: Array<number> = [];
-  @Input()
-  set soundData(data: Array<number>) {
-    this._soundData = data;
-    this.changeDetectorRef.detectChanges();
-  }
-
-  get soundData() {
-    return this._soundData;
-  }
-
+export class VisualizeComponent implements OnInit, AfterViewInit {
   @Input()
   @tuiDefaultProp(
     (height) => Number.isInteger(height) && height > 0,
     'should be integer number more than 0'
   )
-  height = 100;
+  height = this.windowRef.innerHeight;
 
   @Input()
   @tuiDefaultProp(
     (width) => Number.isInteger(width) && width > 0,
     'should be integer number more than 0'
   )
-  defaultWidth = 200;
+  width = this.windowRef.innerWidth;
 
-  @Input() fillColor = '#44bc75';
+  @ViewChild('canvasElement', { static: true })
+  private canvasElementRef!: ElementRef<HTMLCanvasElement>;
 
   constructor(
-    @Inject(ChangeDetectorRef) private changeDetectorRef: ChangeDetectorRef
+    @Inject(WINDOW) private windowRef: Window,
+    @Inject(MIN_HEIGHT_NODE) private minHeight: number,
+    @Inject(NODE_WIDTH) private nodeWidth: number,
+    @Inject(NODE_SPACE) private nodeSpace: number,
+    @Attribute('background') public backgroundColor: string
   ) {}
 
-  @ViewChild(Canvas2dDirective, { static: true, read: Canvas2dDirective })
-  private canvasDirective!: Canvas2dDirective;
+  ngOnInit(): void {
+    console.log('keep');
+  }
 
   ngAfterViewInit(): void {
-    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
-    //Add 'implements AfterViewInit' to the class.
-    console.log(this.canvasDirective as any);
+    const context = this.canvas.getContext('2d');
+    for (let index = 0; index < this.numberOfNodeInView; index++) {
+      const node = new SoundNode(
+        this.nodeWidth,
+        5,
+        (this.nodeWidth + this.nodeSpace) * index,
+        this.centerHeight
+      );
+      node.draw(context);
+    }
+
+    // For debug
+    context?.beginPath();
+
+    context?.moveTo(0, this.centerHeight);
+    context?.lineTo(this.windowRef.innerWidth, this.centerHeight);
+    context?.stroke();
+  }
+
+  /**
+   * Return canvas element from canvas element ref
+   * Because canvasElementRef is a static element, please make sure that we have that element in view
+   * and get canvas after onInit
+   */
+  get canvas(): HTMLCanvasElement {
+    return this.canvasElementRef.nativeElement;
+  }
+
+  get centerHeight(): number {
+    return this.height / 2;
+  }
+
+  get numberOfNodeInView() {
+    return this.width / (this.nodeWidth + this.nodeSpace);
   }
 }
